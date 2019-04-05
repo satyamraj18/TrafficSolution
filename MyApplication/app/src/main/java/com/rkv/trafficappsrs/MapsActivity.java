@@ -1,6 +1,7 @@
 package com.rkv.trafficappsrs;
 
 import android.*;
+import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
@@ -78,10 +79,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(userLocation)      // Sets the center of the map to Mountain View
                         .zoom(17)                   // Sets the zoom
-                        .bearing(90)                // Sets the orientation of the camera to east
+                        .bearing(0)                // Sets the orientation of the camera to east
                         .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                         .build();                   // Creates a CameraPosition from the builder
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                mMap.setTrafficEnabled(true);
+                mMap.getUiSettings().setZoomControlsEnabled(true);
             }
 
             @Override
@@ -106,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         else
         {  //Explicit checking of the permission for accessing users location
             //This 'if' checks that if we dont have permission
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             {   //Asking permission
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},1);
             }
@@ -122,10 +125,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(userLocation)      // Sets the center of the map to Mountain View
                         .zoom(17)                   // Sets the zoom
-                        .bearing(90)                // Sets the orientation of the camera to east
+                        .bearing(0)                // Sets the orientation of the camera to east
                         .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                         .build();                   // Creates a CameraPosition from the builder
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                mMap.setTrafficEnabled(true);
+                mMap.getUiSettings().setZoomControlsEnabled(true);
             }
         }
 
